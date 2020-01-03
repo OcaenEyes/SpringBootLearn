@@ -4,6 +4,7 @@ package com.gzy.reactiveweblearn.repository;
 import com.gzy.reactiveweblearn.domain.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,5 +34,13 @@ public class UserRepository {
         Integer id = idGenerator.incrementAndGet();
         user.setId(id);
         return  repository.put(id,user) == null;
+    }
+
+    /**
+     *
+     * @return 返回所有用户列表
+     */
+    public Collection<User> findAll() {
+        return repository.values();
     }
 }
