@@ -4,6 +4,7 @@ import com.gzy.reactiveweblearn.domain.User;
 import com.gzy.reactiveweblearn.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +19,11 @@ public class UserController {
     }
 
     @PostMapping("/user/save")
-    public User save(@RequestParam String name){
+    public User save(@RequestParam String name) {
         User user = new User();
         user.setName(name);
-        if (userRepository.save(user)){
-            System.out.printf("用户对象 %s 保存成功",user);
+        if (userRepository.save(user)) {
+            System.out.printf("用户对象 %s 保存成功", user);
         }
         return user;
     }
