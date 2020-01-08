@@ -1,8 +1,8 @@
-package com.gzy.firstdemo.dao;
+package com.gzy.firstdemo.entity;
 
 import java.util.Date;
 
-public class UserDao {
+public class User {
     private String name;
     private int age;
     private Date currentTime;
@@ -33,7 +33,7 @@ public class UserDao {
 
     @Override
     public String toString() {
-        return "UserDao{" +
+        return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", currentTime=" + currentTime +

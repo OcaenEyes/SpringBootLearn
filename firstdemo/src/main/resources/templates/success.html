@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hello</h1>
+<h1>这是一个成功页面</h1>
+<h3>[[${username}]]</h3>
+
+<h3>[[${#dates.format(date,'yyyy-MM-dd HH:mm:ss')}]]</h3>
+创建当前时间，精确到天
+<h4>[[${#dates.createToday()}]]</h4>
+创建当前时间，精确到秒
+<h4>[[${#dates.createNow()}]]</h4>
+
+创建自定长度的字符串
+<h4 th:text="${#strings.randomAlphanumeric(count)}"></h4>
+
+
+</body>
+</html>
