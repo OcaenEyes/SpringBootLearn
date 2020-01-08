@@ -26,4 +26,9 @@ public class HelloWordController {
         return "success";
     }
 
+    @RequestMapping("/chatroom")
+    public String chat(){
+        return "chatroom";
+    }
+
 }

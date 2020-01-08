@@ -11,11 +11,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class WebSocketUtils {
-    private Logger logger = LoggerFactory.getLogger(getClass());
 
     public static final Map<String, Session> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
 
-    public void sendMessage(Session session,String message){
+    public static void sendMessage(Session session,String message){
+        Logger logger = LoggerFactory.getLogger(WebSocketUtils.class);
         if (session == null){
             return;
         }
@@ -26,12 +26,12 @@ public class WebSocketUtils {
         try {
             basic.sendText(message);
         }catch (IOException e){
-            logger.error("sendMessage IOException",e);
+            logger.error("sendMessageError",e);
         }
     }
 
 
-    public void sendMessageAll(String message){
+    public static void sendMessageAll(String message){
         ONLINE_USER_SESSIONS.forEach((sessionId, session) -> sendMessage(session,message));
 
     }
