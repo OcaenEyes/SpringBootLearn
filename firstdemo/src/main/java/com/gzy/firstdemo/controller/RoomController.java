@@ -31,13 +31,13 @@ public class RoomController {
         }
 
         Room existRoom = new Room();
-        logger.error(String.valueOf(id));
+//        logger.error(String.valueOf(id));
         existRoom = this.roomService.get(id);
-        logger.error("打印查到的结果" + String.valueOf(existRoom));
+//        logger.error("打印查到的结果" + String.valueOf(existRoom));
         if (existRoom == null) {
             room.setId(id);
             this.roomService.save(room);
-            logger.error("打印保存的结果" + String.valueOf(room));
+//            logger.error("打印保存的结果" + String.valueOf(room));
         }
         return "chat";
 
