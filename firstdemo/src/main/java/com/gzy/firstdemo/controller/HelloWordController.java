@@ -1,11 +1,11 @@
 package com.gzy.firstdemo.controller;
 
+import com.gzy.firstdemo.entity.Room;
 import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -24,11 +24,6 @@ public class HelloWordController {
         model.addAttribute("date",new Date());
         model.addAttribute("count",12);
         return "success";
-    }
-
-    @RequestMapping("/chatroom")
-    public String chat(){
-        return "chatroom";
     }
 
 }

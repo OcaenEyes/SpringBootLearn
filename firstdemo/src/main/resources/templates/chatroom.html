@@ -9,7 +9,7 @@
 <body class="container" style="width: 60%">
 <div class="form-group"></br>
     <h5>聊天室</h5>
-    <textarea id="message_content" class="form-control" readonly="readonly" cols="50" rows="10" ></textarea>
+    <textarea id="message_content" class="form-control" readonly="readonly" cols="50" rows="10"></textarea>
 </div>
 <div class="form-group">
     <label for="in_user_name">用户姓名 &nbsp;</label>
@@ -25,36 +25,17 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
-        var urlPrefix = 'ws://localhost:8080/chat-room/';
-        var ws = null;
-
+        const urlPrefix = 'ws://localhost:8080/chat-room/';
+        let ws = null;
 
         $('#in_user_name').keyup(function () {
+            const username = $('#in_user_name').val();
+            const url = urlPrefix + username;
             if (event.keyCode == 13) {
-                var username = $('#in_user_name').val();
-                var url = urlPrefix + username;
                 ws = new WebSocket(url);
-                ws.onopen = function () {
-                    console.log("建立 websocket 连接...");
-                };
-
-                ws.onmessage = function () {
-                    // 服务端发送的消息
-                    $('#message_content').append(event.data + '\n');
-                };
-
-                ws.onclose = function () {
-                    $('#message_content').append('用户【' + username + '】：已经离开聊天室');
-                    console.log("关闭 websocket 连接...")
-                };
-
+                $('#in_user_name').attr("disabled", true);
+                $('#user_join').attr("disabled", true);
             }
-        });
-
-        $('#user_join').click(function () {
-            var username = $('#in_user_name').val();
-            var url = urlPrefix + username;
-            ws = new WebSocket(url);
             ws.onopen = function () {
                 console.log("建立 websocket 连接...");
             };
@@ -62,34 +43,61 @@
             ws.onmessage = function () {
                 // 服务端发送的消息
                 $('#message_content').append(event.data + '\n');
+
+                const messageHeight = $('#message_content')[0].scrollHeight;
+                $('#message_content').scrollTop(messageHeight);
             };
 
             ws.onclose = function () {
                 $('#message_content').append('用户【' + username + '】：已经离开聊天室');
-                console.log("关闭 websocket 连接...")
+                console.log("关闭 websocket 连接...");
+            };
+
+        });
+
+        $('#user_join').click(function () {
+            const username = $('#in_user_name').val();
+            const url = urlPrefix + username;
+            ws = new WebSocket(url);
+            $('#in_user_name').attr("disabled", true);
+            $('#user_join').attr("disabled", true);
+            ws.onopen = function () {
+                console.log("建立 websocket 连接...");
+            };
+
+            ws.onmessage = function () {
+                // 服务端发送的消息
+                $('#message_content').append(event.data + '\n');
+                const messageHeight = $('#message_content')[0].scrollHeight;
+                $('#message_content').scrollTop(messageHeight);
+            };
+
+            ws.onclose = function () {
+                $('#message_content').append('用户【' + username + '】：已经离开聊天室!' + '\n');
+                console.log("关闭 websocket 连接...");
             };
         });
 
         //客户端发送消息至服务器
+        $('#user_send_all').click(function () {
+            const msg = $('#in_room_msg').val();
+            if (ws) {
+                ws.send(msg);
+                const messageHeight = $('#message_content')[0].scrollHeight;
+                $('#message_content').scrollTop(messageHeight);
+                $('#in_room_msg').val("");
+            }
+        });
+
         $('#in_room_msg').keyup(function () {
-            var msg = $('#in_room_msg').val();
+            const msg = $('#in_room_msg').val();
             if (event.keyCode == 13) {
                 if (ws) {
                     ws.send(msg);
-                    var messageHeight = $('#message_content')[0].scrollHeight;
+                    const messageHeight = $('#message_content')[0].scrollHeight;
                     $('#message_content').scrollTop(messageHeight);
                     $('#in_room_msg').val("");
                 }
-            }
-
-        });
-        $('#user_send_all').click(function () {
-            var msg = $('#in_room_msg').val();
-            if (ws) {
-                ws.send(msg);
-                var messageHeight = $('#message_content')[0].scrollHeight;
-                $('#message_content').scrollTop(messageHeight);
-                $('#in_room_msg').val("");
             }
         });
 
@@ -98,6 +106,9 @@
             if (ws) {
                 ws.close();
             }
+            $('#in_user_name').val("");
+            $('#in_user_name').removeAttr("disabled");
+            $('#user_join').removeAttr("disabled");
         })
     })
 
