@@ -4,5 +4,5 @@ import com.gzy.firstdemo.entity.Room;
 
 public interface RoomService {
     Room save(Room room);
-    Room get(Long id);
+    Room get(Long roomId);
 }

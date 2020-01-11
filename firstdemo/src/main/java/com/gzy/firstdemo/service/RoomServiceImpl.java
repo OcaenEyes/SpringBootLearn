@@ -14,18 +14,16 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room save(Room room) {
-        Long id = room.getId();
-        if (id == null){
-            id = counter.incrementAndGet();
-            room.setId(id);
+        Long roomId = room.getRoomId();
+        if (roomId == null){
+            roomId = counter.incrementAndGet();
+            room.setRoomId(roomId);
         }
-        this.rooms.put(id,room);
-        return room;
+        return this.rooms.put(roomId,room);
     }
 
-
     @Override
-    public Room get(Long id) {
-        return this.rooms.get(id);
+    public Room get(Long roomId) {
+        return this.rooms.get(roomId);
     }
 }

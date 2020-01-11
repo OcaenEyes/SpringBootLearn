@@ -35,7 +35,7 @@ public class RoomController {
         existRoom = this.roomService.get(id);
 //        logger.error("打印查到的结果" + String.valueOf(existRoom));
         if (existRoom == null) {
-            room.setId(id);
+            room.setRoomId(id);
             this.roomService.save(room);
 //            logger.error("打印保存的结果" + String.valueOf(room));
         }
