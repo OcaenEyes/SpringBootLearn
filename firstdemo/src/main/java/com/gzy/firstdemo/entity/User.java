@@ -3,9 +3,17 @@ package com.gzy.firstdemo.entity;
 import java.util.Date;
 
 public class User {
+    private long id;
     private String name;
-    private int age;
     private Date currentTime;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -13,14 +21,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public Date getCurrentTime() {
@@ -31,11 +31,22 @@ public class User {
         this.currentTime = currentTime;
     }
 
+    public User() {
+        super();
+    }
+
+    public User(Long id,String name,Date date){
+        this.id= id;
+        this.name = name;
+        this.
+
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", currentTime=" + currentTime +
                 '}';
     }
