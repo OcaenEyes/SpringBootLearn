@@ -23,7 +23,7 @@ public class NettyService {
             channel = serverBootstrap.bind(port).sync().channel();
             channel.closeFuture().sync();
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
