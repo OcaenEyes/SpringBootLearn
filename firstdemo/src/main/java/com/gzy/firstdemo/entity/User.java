@@ -1,10 +1,20 @@
 package com.gzy.firstdemo.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "tk_user")
 public class User {
-    private int id;
-    private  long userId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "user_id",length = 20)
+    private  Long userId;
+    @Column(name = "user_name",length = 50)
     private String userName;
-    private long userRoomId;
+    @Column(name = "user_room_id",length = 20)
+    private Long userRoomId;
 
     public User() {
         super();
@@ -30,19 +40,19 @@ public class User {
         this.userRoomId = userRoomId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -54,11 +64,11 @@ public class User {
         this.userName = userName;
     }
 
-    public long getUserRoomId() {
+    public Long getUserRoomId() {
         return userRoomId;
     }
 
-    public void setUserRoomId(long userRoomId) {
+    public void setUserRoomId(Long userRoomId) {
         this.userRoomId = userRoomId;
     }
 
