@@ -41,8 +41,8 @@ public class Information {
         this.userName = userName;
     }
 
-    public String getMessage() {
-        return message;
+    public void getMessage(String message) {
+        this.message = message;
     }
 
     public void setMessage(String message) {
@@ -72,4 +72,5 @@ public class Information {
         this.setRoomId(roomId);
         return this;
     }
+
 }
