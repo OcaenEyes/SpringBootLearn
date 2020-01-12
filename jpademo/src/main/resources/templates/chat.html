@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>在线聊天室</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.0/css/bootstrap.css}">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.0/js/bootstrap.js}"></script>
+</head>
+<body class="container" style="width: 60%">
+<div id="user_tip">
+    <div id="name"></div>
+</div>
+<div class="form-group"><br>
+    <h5>聊天室</h5>
+    <textarea id="message_content" class="form-control" readonly="readonly" cols="50" rows="10"></textarea>
+</div>
+<div class="form-group" >
+    <label for="in_user_name">用户姓名 &nbsp;</label>
+    <input id="in_user_name" th:value="${#strings.randomAlphanumeric(3)}" class="form-control" readonly/></br>
+    <button id="user_exit" class="btn btn-warning">离开聊天室</button>
+</div>
+<div class="form-group">
+    <label for="in_room_msg">群发消息 &nbsp;</label>
+    <input id="in_room_msg" value="" class="form-control"/></br>
+    <button id="user_send_all" class="btn btn-info">发送消息</button>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        const urlPrefix = 'ws://localhost:8080/chat-room/';
+        let ws = null;
+        const username = $('#in_user_name').val();
+        alert("加入房间成功，欢迎您！" + username);
+        const url = urlPrefix + username;
+        ws = new WebSocket(url);
+        ws.onopen = function () {
+            console.log("正在建立websocket连接")
+        };
+        ws.onmessage = function () {
+            $('#message_content').append(event.data + '\n');
+            const messageHeight = $('#message_content')[0].scrollHeight;
+            $('#message_content').scrollTop(messageHeight);
+
+        };
+
+        ws.onclose = function () {
+            $('#message_content').append("用户【" + username + "】已离开聊天室！" + "\n");
+            console.log("正在关闭websocket连接");
+        };
+
+        $('#user_send_all').click(function () {
+            const msg = $('#in_room_msg').val();
+            if (ws) {
+                ws.send(msg);
+                const messageHeight = $('#message_content')[0].scrollHeight;
+                $('#message_content').scrollTop(messageHeight);
+                $('#in_room_msg').val("");
+            }
+        });
+
+        $('#in_room_msg').keyup(function () {
+            let msg = $('#in_room_msg').val();
+            if (event.keyCode === 13) {
+                msg = $('#in_room_msg').val();
+                if (ws) {
+                    ws.send(msg);
+                    const messageHeight = $('#message_content')[0].scrollHeight;
+                    $('#message_content').scrollTop(messageHeight);
+                    $('#in_room_msg').val("");
+                }
+            }
+        });
+
+
+        //  退出聊天室
+        $('#user_exit').click(function () {
+            if (ws) {
+                ws.close();
+                $('#in_user_name').val("");
+            }
+        });
+    });
+
+</script>
+<style type="text/css">
+    .nameImage {
+        /*box-shadow: 0px 0px 0px 1px #ddd inset;*/
+        text-shadow: 0 1px #aaa;
+        box-shadow: 0px 0px 1px 0.8px #ddd inset;
+        cursor: pointer;
+        flex: 1 1 auto;
+        width: 47px;
+        height: 43px;
+        line-height: 43px;
+        border-radius: 50%;
+        display: inline-block;
+        font-weight: 600;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        box-sizing: border-box;
+        font-family: Microsoft Yahei;
+    }
+
+</style>
+</html>
