@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="jpademo" />
         <module name="firstdemo" />
+        <module name="nettychattoom" />
         <module name="reactiveweblearn" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="firstdemo" target="1.8" />
       <module name="jpademo" target="1.8" />
+      <module name="nettychattoom" target="1.8" />
       <module name="reactiveweblearn" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -21,6 +23,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="firstdemo" options="-parameters" />
       <module name="jpademo" options="-parameters" />
+      <module name="nettychattoom" options="-parameters" />
       <module name="reactiveweblearn" options="-parameters" />
     </option>
   </component>
