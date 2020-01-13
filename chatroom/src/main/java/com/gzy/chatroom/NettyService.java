@@ -4,6 +4,7 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.sctp.nio.NioSctpServerChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 // 服务启动类
 public class NettyService {
@@ -18,7 +19,7 @@ public class NettyService {
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup)
-                    .channel(NioSctpServerChannel.class)
+                    .channel(NioServerSocketChannel.class)
                     .childHandler(new SocketChannelInitializer());
             channel = serverBootstrap.bind(port).sync().channel();
             channel.closeFuture().sync();

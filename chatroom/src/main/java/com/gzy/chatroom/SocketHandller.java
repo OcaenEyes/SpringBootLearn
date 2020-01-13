@@ -46,7 +46,7 @@ public class SocketHandller extends SimpleChannelInboundHandler<Object> {
         InformationOperationMap.delete(this.sessionId, this.roomId);
         Information information = new Information();
         information.setUserName(this.name);
-        information.setMessage("再见哟~");
+        information.setMessage("20002");
 
         //将下线消息发送给 未下线用户
         InformationOperationMap.map
@@ -144,7 +144,7 @@ public class SocketHandller extends SimpleChannelInboundHandler<Object> {
                         InformationOperationMap.map.get(information.getRoomId()).forEach((id,informationOperationMap) ->{
                             try {
                                 Information information1 = informationOperationMap.getInformation();
-                                information1.setMessage("我来啦~");
+                                information1.setMessage("30003");
                                 this.sendWebSocket(information1.infoJson());
                             }catch (Exception e){
                                e.printStackTrace();
