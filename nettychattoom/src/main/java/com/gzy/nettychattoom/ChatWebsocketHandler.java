@@ -84,12 +84,15 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
      */
     @Override
     protected void messageReceived(ChannelHandlerContext channelHandlerContext, Object o) throws Exception {
+        logger.info("接到服务请求");
         //处理客户端向服务端发起的 http握手请求业务
         if (o instanceof FullHttpRequest) {
+            logger.info("这是http请求");
             handHttpRequest(channelHandlerContext, (FullHttpRequest) o);
         }
         // 处理客户端向服务端发起的 websocket 请求
         else if (o instanceof WebSocketFrame) {
+            logger.info("这是websocket 请求");
             handWebSocketFrame(channelHandlerContext, (WebSocketFrame) o);
         }
     }
@@ -134,7 +137,7 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
      */
     private void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest request, DefaultFullHttpResponse response) {
         //返回应用给客户端
-        if (response.getStatus().code() != 200) {
+        if (response.getStatus().code() == 200) {
             ByteBuf byteBuf = Unpooled.copiedBuffer(response.getStatus().toString(), CharsetUtil.UTF_8);
             response.content().writeBytes(byteBuf);
             byteBuf.release();
@@ -159,10 +162,12 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
         // 判断是否是关闭websocket的指令
         if (webSocketFrame instanceof CloseWebSocketFrame) {
             webSocketServerHandshaker.close(ctx.channel(), ((CloseWebSocketFrame) webSocketFrame).retain());
+            return;
         }
         // 判断是否是ping消息
         if (webSocketFrame instanceof PongWebSocketFrame) {
             ctx.channel().write(new PongWebSocketFrame(webSocketFrame.content().retain()));
+            return;
         }
 
         // 判断是否是二进制消息，如果是二进制消息 抛出异常
@@ -186,7 +191,6 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
                         try {
                             Information information1 = iom.getInformation();
                             information1.setMessage("30003");
-
                             // 发送其他用户信息给要注册用户
                             sendWebSocket(information1.infoJson());
 
@@ -196,7 +200,6 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
                         }
                     });
                 }
-
                 // 添加用户
                 InformationOperationMap.add(ctx, information);
                 System.out.println("add:" + information.infoJson());
