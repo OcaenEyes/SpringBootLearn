@@ -20,7 +20,7 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
     private WebSocketServerHandshaker webSocketServerHandshaker;
-    private static final String WEB_SOCKET_URL = "ws://localhost:8888/websocket";
+    private static final String WEB_SOCKET_URL = "ws://localhost:8888";
     private ChannelHandlerContext channelHandlerContext;
     private String userId;
     private String roomId;
@@ -110,7 +110,8 @@ public class ChatWebsocketHandler extends SimpleChannelInboundHandler<Object> {
             return;
         }
 
-        WebSocketServerHandshakerFactory webSocketServerHandshakerFactory = new WebSocketServerHandshakerFactory("ws://" + request.headers().get(HttpHeaders.Names.HOST), null, false);
+//        WebSocketServerHandshakerFactory webSocketServerHandshakerFactory = new WebSocketServerHandshakerFactory("ws://" + request.headers().get(HttpHeaders.Names.HOST), null, false);
+        WebSocketServerHandshakerFactory webSocketServerHandshakerFactory = new WebSocketServerHandshakerFactory(WEB_SOCKET_URL, null, false);
 
         webSocketServerHandshaker = webSocketServerHandshakerFactory.newHandshaker(request);
 

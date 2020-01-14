@@ -17,80 +17,19 @@
     <label for="in_user_name">用户姓名 &nbsp;</label>
     <input id="in_user_name" value="" class="form-control"/></br>
 
-    <button id="user_join" class="btn btn-success" onclick="joinChat()">加入聊天室</button>
+    <button id="user_join" class="btn btn-success">加入聊天室</button>
     <button id="user_exit" class="btn btn-warning">离开聊天室</button>
 </div>
 <div class="form-group">
     <label for="in_room_msg">群发消息 &nbsp;</label>
     <input id="in_room_msg" value="" class="form-control"/></br>
-    <button id="user_send_all" class="btn btn-info" onclick="sendMessage()">发送消息</button>
+    <button id="user_send_all" class="btn btn-info">发送消息</button>
 </div>
 </body>
 <!--https://blog.csdn.net/qq_36994771/article/details/80085876-->
 <!--https://www.cnblogs.com/guoyuchuan/p/9549672.html-->
 <!--https://www.cnblogs.com/guoyuchuan/p/9581283.html-->
 <script type="text/javascript" th:inline="javascript">
-    $(document).ready(function () {
-        let user;
-        const urlPrefix = "ws://localhost:8888"
-        let webSocket;
-        if (!window.WebSocket) {
-            window.WebSocket = window.MozWebSocket || window.WebSocket;
-        }
-        if (window.WebSocket) {
-            //获取h5 socket
-            webSocket = new WebSocket(urlPrefix);
-        } else {
-            alert("您的浏览器不支持WebSocket");
-        }
-
-        //进入聊天室
-        function joinChat() {
-            const roomId = $('#in_room_id').val();
-            console.log(roomId);
-            const userName = $('#in_user_name').val();
-            console.log(userName);
-            webSocket.onopen = function (data) {
-                console.log("socket onopen");
-                user.roomId = roomId;
-                user.message = "10001";
-                user.userName = userName;
-                console.log(user);
-                //连接成功发送消息
-                webSocket.send(JSON.stringify(user));
-            }
-
-            webSocket.onmessage = function (data) {
-                console.log("socket onmessage");
-                const information = JSON.parse(data.data);
-                console.log(information);
-                if (information.message === '10001') { //10001为上线
-                    $('#message-content').append(information.userName + '上线了' + '\n');
-                } else if (information.message === '20002') { //20002为下线
-                    $('#message-content').append(information.userName + '下线了' + '\n');
-                } else if (information.message === '30003') { //加载已上线的用户30003
-                    $('#message-content').append(information.userName)
-                } else {
-                    $('#message-content').append(information.userName + ':' + information.message);
-                }
-            }
-
-            webSocket.onclose = function (data) {
-                console.log("socket onclose")
-            }
-
-            webSocket.onerror = function () {
-                console.log("socket onerror")
-            }
-        }
-
-        //发送消息
-        function sendMessage(data) {
-            user.message = $('#in_room_msg').val();
-            webSocket.send(JSON.stringify(user));
-        }
-
-    })
 
 </script>
 </html>
