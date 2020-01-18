@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    <link rel="stylesheet" th:href="@{lib/plugin/editorMd/css/editormd.css}">
+    <link rel="stylesheet" th:href="@{webjars/Semantic-UI/2.4.1/semantic.css}">
+
+<!--    https://blog.csdn.net/qq_26212181/article/details/103762957-->
+</head>
+<body>
+<div class="fixed">
+    <div id="md-content">
+        <textarea name="content" style="display: none">
+
+        </textarea>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{lib/plugin/editorMd/editormd.min.js}"></script>
+<script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let contentEditor;
+
+    $(function() {
+        contentEditor = editormd("md-content", {
+            width   : "90%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "/lib/plugin/editorMd/lib/"
+        });
+
+        /*
+        // or
+        testEditor = editormd({
+            id      : "test-editormd",
+            width   : "90%",
+            height  : 640,
+            path    : "../lib/"
+        });
+        */
+    });
+</script>
+</html>
