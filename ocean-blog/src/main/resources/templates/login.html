@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{webjars/Semantic-UI/2.4.1/semantic.css}">
+    <link rel="stylesheet" th:href="@{css/oceanblog.css}">
+</head>
+<body>
+<div class="ui container" style="max-width: 26em!important; margin-top: 10em;">
+    <div class="ui middle aligned center aligned grid" >
+        <div class="column">
+            <h2 class="ui teal header">
+                <img src="">
+                <div>乔克叔叔杂货店</div>
+            </h2>
+
+            <form class="ui large form" method="post" th:action="@{/login}">
+                <div class="ui segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="username" placeholder="用户名">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="密码">
+                        </div>
+                    </div>
+
+                    <button class="ui fluid teal submit button">
+                        登录
+                    </button>
+                </div>
+            </form>
+            <div class="ui error message">
+                新用户? <a href="#">注册</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
