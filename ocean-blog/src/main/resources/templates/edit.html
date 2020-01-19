@@ -3,44 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>编辑</title>
-    <link rel="stylesheet" th:href="@{lib/plugin/editorMd/css/editormd.css}">
+    <script  th:src="@{lib/plugin/ckeditor/ckeditor.js}"></script>
     <link rel="stylesheet" th:href="@{webjars/Semantic-UI/2.4.1/semantic.css}">
-
-<!--    https://blog.csdn.net/qq_26212181/article/details/103762957-->
-</head>
+    <link rel="stylesheet" th:href="@{css/oceanblog.css}">
 <body>
-<div class="fixed">
-    <div id="md-content">
-        <textarea name="content" style="display: none">
+<!--导航-->
+<nav class="ui inverted attached segment o-pad-tb-mini">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">乔克叔叔杂货店</h2>
+            <a href="/" class="item">首页</a>
+            <a href="/tag" class="item">标签</a>
+            <a href="/category" class="item">分类</a>
+            <a href="/about" class="item">关于我</a>
 
-        </textarea>
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui transparent inverted icon input">
+                        <i class="search icon"></i>
+                        <input type="text" placeholder="搜索">
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+</nav>
+
+<div class="ui container">
+    <div class="ui basic segment">
+        <div class="ui middle aligned list">
+            <div class="item">
+                <div class="right floated ">
+                    <button class="ui teal basic circular button">发布文章</button>
+                </div>
+                <div class="ui fluid input">
+                    <button class="ui teal basic circular button">返回文章列表</button>
+                    <input class="ui input" placeholder="输入文章标题">
+                </div>
+            </div>
+        </div>
+        <div id="editor">
+        </div>
+    </div>
+
 </div>
 
 </body>
 <script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
-<script type="text/javascript" th:src="@{lib/plugin/editorMd/editormd.min.js}"></script>
 <script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
-<script type="text/javascript" th:inline="javascript">
-    let contentEditor;
-
-    $(function() {
-        contentEditor = editormd("md-content", {
-            width   : "90%",
-            height  : 640,
-            syncScrolling : "single",
-            path    : "/lib/plugin/editorMd/lib/"
-        });
-
-        /*
-        // or
-        testEditor = editormd({
-            id      : "test-editormd",
-            width   : "90%",
-            height  : 640,
-            path    : "../lib/"
-        });
-        */
+<script type="text/javascript">
+    CKEDITOR.replace('editor',{
+        height:650,
+        removeButtons: 'About'
     });
 </script>
 </html>

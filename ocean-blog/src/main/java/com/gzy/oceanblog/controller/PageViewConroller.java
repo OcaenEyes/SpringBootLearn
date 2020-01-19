@@ -30,9 +30,19 @@ public class PageViewConroller {
         return "admin";
     }
 
+    @RequestMapping("/editmd")
+    private String editmd(){
+        return "editmd";
+    }
+
     @RequestMapping("/edit")
     private String edit(){
         return "edit";
+    }
+
+    @RequestMapping("/blog")
+    private  String blog(){
+        return "blog";
     }
 
 }

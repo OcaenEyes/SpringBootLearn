@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>文章详情</title>
+    <link rel="stylesheet" th:href="@{webjars/Semantic-UI/2.4.1/semantic.css}">
+    <link rel="stylesheet" th:href="@{css/oceanblog.css}">
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment o-pad-tb-mini">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">乔克叔叔杂货店</h2>
+            <a href="/" class="item">首页</a>
+            <a href="/tag" class="item">标签</a>
+            <a href="/category" class="item">分类</a>
+            <a href="/about" class="item">关于我</a>
+
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui transparent inverted icon input">
+                        <i class="search icon"></i>
+                        <input type="text" placeholder="搜索">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<div class="ui container">
+<!--    正文-->
+    <div class="ui basic segment">
+        <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}" style="width: 100%">
+        <h2>读书城南</h2>
+        <p>百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
+        </p>
+    </div>
+
+<!--    赞赏-->
+    <div class="ui center aligned basic segment">
+        <button id="paybutton" class="ui teal basic circular button">赞赏</button>
+    </div>
+    <div class="ui payQRcode flowing popup transition hidden">
+        <div class="ui images">
+            <div class="image"> <img th:src="@{images/公众号.jpg}" class="ui rounded bordered image"> <div>支付宝</div></div>
+            <div class="image"> <img th:src="@{images/公众号.jpg}" class="ui rounded bordered image"> <div>微信</div></div>
+        </div>
+    </div>
+
+
+<!--    评论-->
+    <div class="ui basic segment">
+        <div class="ui comments">
+            <h3 class="ui dividing header">评论</h3>
+            <div class="comment">
+                <a class="avatar">
+                    <img th:src="@{images/读书城南二维码.png}">
+                </a>
+                <div class="content">
+                    <a class="author">Matt</a>
+                    <div class="metadata">
+                        <span class="date">Today at 5:42PM</span>
+                    </div>
+                    <div class="text">
+                        How artistic!
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <a class="avatar">
+                    <img th:src="@{images/读书城南二维码.png}">
+                </a>
+                <div class="content">
+                    <a class="author">Elliot Fu</a>
+                    <div class="metadata">
+                        <span class="date">Yesterday at 12:30AM</span>
+                    </div>
+                    <div class="text">
+                        <p>This has been very useful for my research. Thanks as well!</p>
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+                <div class="comments">
+                    <div class="comment">
+                        <a class="avatar">
+                            <img th:src="@{images/读书城南二维码.png}">
+                        </a>
+                        <div class="content">
+                            <a class="author">Jenny Hess</a>
+                            <div class="metadata">
+                                <span class="date">Just now</span>
+                            </div>
+                            <div class="text">
+                                Elliot you are always so right :)
+                            </div>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="comment">
+                <a class="avatar">
+                    <img th:src="@{images/读书城南二维码.png}">
+                </a>
+                <div class="content">
+                    <a class="author">Joe Henderson</a>
+                    <div class="metadata">
+                        <span class="date">5 days ago</span>
+                    </div>
+                    <div class="text">
+                        Dude, this is awesome. Thanks so much
+                    </div>
+                    <div class="actions">
+                        <a class="reply">Reply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui form basic segment">
+        <div class="field">
+            <textarea name="content" placeholder="请输入评论信息..."></textarea>
+        </div>
+        <div class="fields">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="ui icon user"></i>
+                    <input type="text" name="nickname" placeholder="姓名">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="ui icon mail"></i>
+                    <input type="text" name="email" placeholder="邮箱">
+                </div>
+            </div>
+            <div class="field">
+                <button class="ui teal basic button">发布</button>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--底部-->
+<footer class="ui inverted vertical footer segment o-pad-tb-max ">
+    <div class="ui center aligned container ">
+        <div class="ui inverted divided stackable grid">
+            <div class="four wide column ">
+                <h4 class="ui inverted header">相关连接</h4>
+                <div class="ui inverted link list o-footer-text ">
+                    <p><a href="https://blog.oceaneyes.cn" class="item">乔克叔叔博客</a></p>
+                    <p><a href="http://oceaneyes.top" class="item">关于一二三</a></p>
+                    <p><a href="#" class="item">关于一二三</a></p>
+                </div>
+            </div>
+            <div class="four wide column ">
+                <h4 class="ui inverted header">最新事项</h4>
+                <div class="ui inverted link list o-footer-text">
+                    <p><a href="#" class="item">关于一二三</a></p>
+                    <p><a href="#" class="item">关于一二三</a></p>
+                    <p><a href="#" class="item">关于一二三</a></p>
+                </div>
+            </div>
+            <div class="four wide column ">
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list o-footer-text">
+                    <p><a href="#" class="item">关于一二三</a></p>
+                    <p><a href="#" class="item">关于一二三</a></p>
+                    <p><a href="#" class="item">关于一二三</a></p>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img class="ui rounded image" alt="" th:src="@{images/公众号.jpg}" style="width: 88px">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui inverted section divider"></div>
+        <p class="o-text-thin o-text-space o-text-opacity o-footer-text">Copyright © 2013-2019</p>
+        <p class="o-text-thin o-text-space o-text-opacity o-footer-text">Designed By Gazhiyong</p>
+    </div>
+</footer>
+</body>
+<script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
+<script type="text/javascript">
+    $('#paybutton').popup({
+        popup : $('.payQRcode'),
+        on : 'click',
+        position : 'bottom center'
+    });
+
+</script>
+</html>

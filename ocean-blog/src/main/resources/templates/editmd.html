@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑</title>
+    <link rel="stylesheet" th:href="@{lib/plugin/editorMd/css/editormd.css}">
+    <link rel="stylesheet" th:href="@{webjars/Semantic-UI/2.4.1/semantic.css}">
+    <link rel="stylesheet" th:href="@{css/oceanblog.css}">
+
+    <!--    https://blog.csdn.net/qq_26212181/article/details/103762957-->
+</head>
+<body>
+<!--导航-->
+<nav class="ui inverted attached segment o-pad-tb-mini">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui teal header item">乔克叔叔杂货店</h2>
+            <a href="/" class="item">首页</a>
+            <a href="/tag" class="item">标签</a>
+            <a href="/category" class="item">分类</a>
+            <a href="/about" class="item">关于我</a>
+
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui transparent inverted icon input">
+                        <i class="search icon"></i>
+                        <input type="text" placeholder="搜索">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<div class="ui container">
+
+    <div class="ui basic segment">
+        <div class="ui middle aligned list">
+            <div class="item">
+                <div class="right floated ">
+                    <button class="ui teal basic circular button">发布文章</button>
+                </div>
+                <div class="ui fluid input">
+                    <button class="ui teal basic circular button">返回文章列表</button>
+                    <input class="ui input" placeholder="输入文章标题">
+                </div>
+            </div>
+        </div>
+        <div id="md-content">
+            <textarea name="content" style="display: none" placeholder="编辑文章"></textarea>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{lib/plugin/editorMd/editormd.min.js}"></script>
+<script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let contentEditor;
+
+    $(function () {
+        contentEditor = editormd("md-content", {
+            width: "100%",
+            height: 640,
+            syncScrolling: "single",
+            path: "/lib/plugin/editorMd/lib/",
+            codeFold: true,
+            emoji: true,
+            taskList: true,
+            tex: true,
+            flowChat: true,
+            sequenceDiagram: true,
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "/uploadImg",
+            toolbarIcons: function () {
+                return [
+                    "undo", "redo", "|",
+                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
+                    "h1", "h2", "h3", "h4", "h5", "h6", "|",
+                    "list-ul", "list-ol", "hr", "|",
+                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime", "emoji", "html-entities", "pagebreak", "|",
+                    "goto-line", "watch", "preview", "fullscreen", "clear", "search", "|"
+                ]
+            },
+        });
+    });
+</script>
+</html>
