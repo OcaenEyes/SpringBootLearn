@@ -71,6 +71,7 @@
             <artifactId>Semantic-UI</artifactId>
             <version>2.4.1</version>
         </dependency>
+
     </dependencies>
 
     <build>
