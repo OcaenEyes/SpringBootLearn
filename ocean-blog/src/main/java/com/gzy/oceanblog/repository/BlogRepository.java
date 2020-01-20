@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface BlogRepository extends JpaRepository<Blog,Long>, JpaSpecificationExecutor<Blog> {
 
-    List<String> findGroupYear();
-
-    List<Blog> findByYear(Integer year);
-
-    List<Blog> findByYearAndMonth(Integer year,Integer month);
-
-    List<Blog> findTop(Pageable pageable);
+//    List<String> findGroupYear();
+//
+//    List<Blog> findByYear(Integer year);
+//
+//    List<Blog> findByYearAndMonth(Integer year,Integer month);
+//
+//    List<Blog> findTop(Pageable pageable);
 }
