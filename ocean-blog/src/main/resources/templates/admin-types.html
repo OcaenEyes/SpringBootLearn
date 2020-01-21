@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>文章详情</title>
+    <title>文章类型</title>
     <base th:href="${#request.getContextPath()}+'/'">
     <link rel="stylesheet" th:href="@{webjars/Semantic-UI/2.4.1/semantic.css}">
     <link rel="stylesheet" th:href="@{css/oceanblog.css}">
@@ -30,6 +30,119 @@
         </div>
     </div>
 </nav>
+<div class="ui container" style="max-width: 56em !important;">
+
+    <div class="ui mini success message transition" th:unless="${#strings.isEmpty(message)}">
+        <i class="close icon"></i>
+        <div class="header">提示:</div>
+        <p th:text="${message}"></p>
+    </div>
+
+    <div class="ui basic segment" style="margin-bottom: 0 !important;">
+        <button id="new-type-button" class="ui teal basic button">新增</button>
+    </div>
+
+    <div class="ui basic segment" style="margin-top: 0 !important;">
+        <table class="ui celled teal table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="type : ${page.content}">
+                <td th:text="${type.id}"></td>
+                <td th:text="${type.name}"></td>
+                <td class="right floated">
+                    <a class="ui mini teal basic button" id="update-type-button">编辑</a>
+                    <a class="ui mini teal basic button" th:href="@{admin/types/delete/{id}(id=${type.id})}">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr th:if="${page.totalPages} >1">
+                <th colspan="3">
+                    <div class="ui right floated mini pagination menu">
+                        <a class="item" th:href="@{admin/types(page=${page.number} - 1)}">上一页</a>
+                        <a class="item" th:href="@{admin/types(page=${page.number} + 1)}">下一页</a>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+</div>
+
+<div class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">新建类型</div>
+    <div class="content">
+        <form class="ui form" th:action="*{id}==null ? @{/admin/types} : @{admin/types/update/{id}(id =*{id})" method="post" th:object="${type}">
+            <div class="ui mini error message">
+            </div>
+            <div class="field">
+                <div class="ui basic segment" style="margin-bottom: 0 !important;">
+                    <input name="name" type="text" placeholder="类型名称" th:value="*{name}">
+                </div>
+                <div class="ui right floated basic segment"
+                     style="margin-top: 0 !important;padding-right: 0 !important;">
+                    <button class="ui teal basic button" type="submit" id="save-new-type-button">保存</button>
+                    <button class="ui basic button" id="cancel-new-type-button">取消</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 </body>
+<script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let result;
+    result = [[${page}]];
+    console.log(result);
+    $('#new-type-button').click(function () {
+        $('.ui.small.modal')
+            .modal({
+                blurring: true
+            })
+            .modal('show');
+    });
+
+    $('#update-type-button').click(function () {
+        $('.ui.small.modal')
+            .modal({
+                blurring: true
+            })
+            .modal('show');
+    });
+
+    $('#cancel-new-type-button').click(function () {
+        $('.ui.small.modal')
+            .modal('hide');
+    });
+
+    $('.ui.form')
+        .form({
+            fields: {
+                name: {
+                    identifier: 'name',
+                    rules: [{
+                        type: 'empty'
+                    }]
+                }
+            }
+        });
+
+    $('.message .close').on(
+        'click',function () {
+            $(this).closest('.message').transition('fade');
+        }
+    );
+</script>
 </html>
