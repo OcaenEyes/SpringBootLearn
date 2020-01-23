@@ -12,21 +12,22 @@
 <nav class="ui inverted attached segment o-pad-tb-mini">
     <div class="ui container">
         <div class="ui inverted secondary stackable menu">
-            <h2 class="ui teal header item">乔克叔叔杂货店</h2>
-            <a href="/" class="item">首页</a>
-            <a href="/tag" class="item">标签</a>
-            <a href="/category" class="item">分类</a>
-            <a href="/about" class="item">关于我</a>
-
+            <h2 class="ui teal header item">乔克叔叔杂货店ADMIN</h2>
+            <a th:href="@{admin}" class="item">首页</a>
+            <a th:href="@{admin/types}" class="item">类型</a>
+            <a th:href="@{admin/tag}" class="item">标签</a>
+            <a th:href="@{admin/category}" class="item">分类</a>
             <div class="right menu">
-                <div class="item">
-                    <div class="ui transparent inverted icon input">
-                        <i class="search icon"></i>
-                        <input type="text" placeholder="搜索">
+                <div class="ui inline dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image">高智勇
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a th:href="@{logout}" class="item">注销</a>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </nav>
@@ -53,8 +54,8 @@
             </thead>
             <tbody>
             <tr th:each="type : ${page.content}">
-                <td th:text="${type.id}"></td>
-                <td th:text="${type.name}"></td>
+                <td id="type-id" th:text="${type.id}"></td>
+                <td id="type-name" th:text="${type.name}"></td>
                 <td class="right floated">
                     <a class="ui mini teal basic button" id="update-type-button">编辑</a>
                     <a class="ui mini teal basic button" th:href="@{admin/types/delete/{id}(id=${type.id})}">删除</a>
@@ -81,12 +82,12 @@
     <i class="close icon"></i>
     <div class="header">新建类型</div>
     <div class="content">
-        <form class="ui form" th:action="*{id}==null ? @{/admin/types} : @{admin/types/update/{id}(id =*{id})" method="post" th:object="${type}">
+        <form class="ui form" method="post" th:object="${type}">
             <div class="ui mini error message">
             </div>
             <div class="field">
                 <div class="ui basic segment" style="margin-bottom: 0 !important;">
-                    <input name="name" type="text" placeholder="类型名称" th:value="*{name}">
+                    <input id="new-type-name" name="name" type="text" placeholder="类型名称">
                 </div>
                 <div class="ui right floated basic segment"
                      style="margin-top: 0 !important;padding-right: 0 !important;">
@@ -106,6 +107,7 @@
     let result;
     result = [[${page}]];
     console.log(result);
+    let oldType;
     $('#new-type-button').click(function () {
         $('.ui.small.modal')
             .modal({
@@ -120,6 +122,20 @@
                 blurring: true
             })
             .modal('show');
+
+        const typeId = $('#type-id').text();
+        const typeName = $('#type-name').text();
+        console.log("id是", typeId);
+        $.get("/admin/types/get", {"id": typeId}, function (data) {
+            console.log(data);
+            console.log(data.id);
+            console.log(data.name);
+            oldType = data;
+            console.log(oldType);
+            $('#new-type-name').val(data.name);
+        });
+
+
     });
 
     $('#cancel-new-type-button').click(function () {
@@ -140,7 +156,7 @@
         });
 
     $('.message .close').on(
-        'click',function () {
+        'click', function () {
             $(this).closest('.message').transition('fade');
         }
     );

@@ -1,20 +1,18 @@
 package com.gzy.oceanblog.controller.admin;
 
-import com.gzy.oceanblog.entity.Blog;
-import com.gzy.oceanblog.entity.BlogTag;
 import com.gzy.oceanblog.entity.BlogType;
 import com.gzy.oceanblog.service.BlogTypeService;
 import javassist.NotFoundException;
+import org.omg.CORBA.TypeCodePackage.BadKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 public class BlogTypeController {
@@ -46,6 +44,18 @@ public class BlogTypeController {
         blogTypeService.deleteBlogType(id);
         redirectAttributes.addFlashAttribute("message","删除成功");
         return "redirect:/admin/types";
+    }
+
+    @GetMapping("admin/types/get")
+    @ResponseBody
+//    public String gettype(@RequestParam Long id){
+//        BlogType blogType = blogTypeService.getBlogType(id);
+//        String old = blogType.toString();
+//        return old;
+//
+//    }
+    public BlogType gettype(@RequestParam Long id){
+        return blogTypeService.getBlogType(id);
     }
 
     @PostMapping("admin/types/update/{id}")
