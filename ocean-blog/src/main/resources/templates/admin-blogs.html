@@ -31,6 +31,61 @@
         </div>
     </div>
 </nav>
+<div class="ui container" style="max-width: 70em !important;">
+    <div class="ui mini success message transition" th:unless="${#strings.isEmpty(message)}">
+        <i class="close icon"></i>
+        <div class="header">提示:</div>
+        <p th:text="${message}"></p>
+    </div>
+
+    <div class="ui basic segment">
+        <table class="ui celled teal table">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>标题</th>
+                <th>类型</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="blog,iter : ${page.content}">
+                <td th:text="${iter.count}"></td>
+                <td th:text="${blog.title}"></td>
+                <td th:text="${blog.flag}"></td>
+                <td class="right floated">
+                    <a class="ui mini teal basic button">编辑</a>
+                    <a class="ui mini teal basic button">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="4">
+                    <div class="ui right floated mini pagination menu">
+                        <a class="item">上一页</a>
+                        <a class="item">下一页</a>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
 
 </body>
+<script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let result;
+    result = [[${page}]];
+    console.log(result);
+
+    $('.message .close').on(
+        'click', function () {
+            $(this).closest('.message').transition('fade');
+        }
+    );
+</script>
 </html>
