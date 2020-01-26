@@ -34,7 +34,7 @@ public class PageViewConroller {
 
     @RequestMapping("/admin/edit")
     private String edit(){
-        return "edit";
+        return "admin-edit";
     }
 
     @RequestMapping("/blog")

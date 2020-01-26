@@ -34,10 +34,13 @@
 <div class="ui container">
 <!--    正文-->
     <div class="ui basic segment">
+        <h2 th:text="${cblog.title}"></h2>
         <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}" style="width: 100%">
         <h2>读书城南</h2>
         <p>百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
         </p>
+        <div th:text="${cblog.content}"></div>
+        <div th:value="${cblog.content}"></div>
     </div>
 
 <!--    赞赏-->
@@ -202,12 +205,16 @@
 </body>
 <script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
 <script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     $('#paybutton').popup({
         popup : $('.payQRcode'),
         on : 'click',
         position : 'bottom center'
     });
+
+    let detial;
+    detial = [[${cblog}]];
+    console.log(detial);
 
 </script>
 </html>
