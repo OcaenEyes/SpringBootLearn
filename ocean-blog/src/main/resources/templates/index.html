@@ -33,7 +33,7 @@
 
 <!--中间区域-->
 <div class="ui container" style="max-width: 64em !important;">
-    <div class="ui padded vertical segment o-pad-tb-large">
+    <div class="ui padded vertical segment o-pad-tb-large" th:each="blog : ${blogs.content}">
         <div class="ui stackable grid">
             <div class="four wide column">
                 <a href="/blog" target="_blank">
@@ -42,8 +42,8 @@
 
             </div>
             <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
+                <h3 class="ui header" th:text="${blog.title}">读书城南</h3>
+                <div class="o-summary-text" th:text="${blog.content}">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</div>
                 <div class="ui stackable grid">
                     <div class="eight wide column">
                         <div class="ui horizontal link list ">
@@ -52,10 +52,10 @@
                                 <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
                             </div>
                             <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
+                                <p class="o-tag-text" th:text="${blog.createTime}" ><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
                             </div>
                             <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
+                                <p class="o-tag-text" th:text="${blog.views}" ><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
                             </div>
                         </div>
                     </div>
@@ -80,335 +80,6 @@
     </div>
 
 </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="ui padded vertical segment o-pad-tb-large">
-        <div class="ui stackable grid">
-            <div class="four wide column">
-                <a href="#" target="_blank">
-                    <img class="ui rounded image" alt="" th:src="@{images/读书城南二维码.png}">
-                </a>
-
-            </div>
-            <div class="twelve wide column">
-                <h3 class="ui header">读书城南</h3>
-                <p class="o-summary-text">百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。少长聚嬉戏，不殊同队鱼。百年歌自苦，未见有知音。</p>
-                <div class="ui stackable grid">
-                    <div class="eight wide column">
-                        <div class="ui horizontal link list ">
-                            <div class="item middle aligned">
-                                <img th:src="@{images/读书城南二维码.png}" class="ui avatar image" style="width: 20px;height: 20px">
-                                <div class="middle aligned content"><a href="#" class="header o-tag-text">高智勇</a></div>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="calendar icon"></i>&nbsp;&nbsp;2013-01-01</p>
-                            </div>
-                            <div class="item middle aligned">
-                                <p class="o-tag-text"><i class="eye icon"></i>&nbsp;&nbsp;5643</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eight wide column" style="padding-right: 0">
-                        <div class="ui horizontal link list">
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                            <div class="item middle aligned">
-                                <a href="#" target="_blank" class="ui teal tag label o-tag-text">读书城南</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
 </div>
 
@@ -458,5 +129,9 @@
 
 <script type="text/javascript" th:src="@{webjars/jquery/3.4.1/jquery.js}"></script>
 <script type="text/javascript" th:src="@{webjars/Semantic-UI/2.4.1/semantic.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let blogs = [[${blogs}]];
+    console.log(blogs);
+</script>
 </body>
 </html>

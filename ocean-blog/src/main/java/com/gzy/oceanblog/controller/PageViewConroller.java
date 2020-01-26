@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageViewConroller {
-    @RequestMapping("/index")
-    private String index(){
-        return "index";
-    }
 
     @RequestMapping("/tag")
     private String tag(){
@@ -31,12 +27,12 @@ public class PageViewConroller {
         return "admin";
     }
 
-    @RequestMapping("/editmd")
+    @RequestMapping("/admin/editmd")
     private String editmd(){
         return "editmd";
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping("/admin/edit")
     private String edit(){
         return "edit";
     }
