@@ -10,6 +10,7 @@ public class LoginConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         InterceptorRegistration registration = registry.addInterceptor(new LoginHandlerInterceptor());
+        registration.addPathPatterns("/admin");
         registration.addPathPatterns("/admin/*");
     }
 }
