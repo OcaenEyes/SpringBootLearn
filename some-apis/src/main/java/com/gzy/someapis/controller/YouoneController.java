@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api("ONE 一个")
+@Api(tags = "V0.0.1-20191210",description = "ONE 一个")
 public class YouoneController {
     @Autowired
     private YouoneService youoneService;
 
-    @ApiOperation(value = "分页获取ONE", notes = "默认的倒序，每页10条")
+    @ApiOperation(value = "倒序分页获取ONE", notes = "默认的倒序，每页10条")
     @ApiImplicitParam(name = "page", value = "页码")
     @GetMapping("/youone-default")
     public Page<YouoneEntity> page(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         return youoneService.listYouone(pageable);
     }
 
-    @ApiOperation(value = "分页获取ONE", notes = "无排序状态，自定获取每页的数据")
+    @ApiOperation(value = "无排序自定义分页获取ONE", notes = "无排序状态，自定获取每页的数据")
     @ApiImplicitParams({@ApiImplicitParam(name = "page", value = "页码", required = true),
             @ApiImplicitParam(name = "size", value = "每页数量", required = true)})
     @GetMapping("/youone-simple")
@@ -37,7 +37,7 @@ public class YouoneController {
         return youoneService.getPage(page, size);
     }
 
-    @ApiOperation(value = "分页获取ONE", notes = "倒序状态，自定获取每页的数据")
+    @ApiOperation(value = "倒序自定义分页获取ONE", notes = "倒序状态，自定获取每页的数据")
     @ApiImplicitParams({@ApiImplicitParam(name = "page", value = "页码", required = true),
             @ApiImplicitParam(name = "size", value = "每页数量", required = true)})
 
