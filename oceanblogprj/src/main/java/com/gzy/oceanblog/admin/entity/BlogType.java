@@ -18,7 +18,7 @@ public class BlogType {
     public BlogType() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

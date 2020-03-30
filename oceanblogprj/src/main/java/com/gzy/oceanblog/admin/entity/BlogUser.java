@@ -15,7 +15,6 @@ public class BlogUser {
     private String username;
     private String email;
     private String avatar;
-    private int type;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -29,7 +28,7 @@ public class BlogUser {
     public BlogUser() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -69,13 +68,6 @@ public class BlogUser {
         this.avatar = avatar;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -109,7 +101,6 @@ public class BlogUser {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
-                ", type=" + type +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", blogs=" + blogs +

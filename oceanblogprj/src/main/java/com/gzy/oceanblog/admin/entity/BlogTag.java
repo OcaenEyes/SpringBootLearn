@@ -18,7 +18,7 @@ public class BlogTag {
     public BlogTag() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

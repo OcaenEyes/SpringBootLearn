@@ -15,6 +15,16 @@ public class Blog {
     @GeneratedValue
     private long id;
     private String title;
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    private String intro;
     private String content;
     private String thumbPic;
     private Boolean recommend;
@@ -41,7 +51,7 @@ public class Blog {
     public Blog() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -142,6 +152,7 @@ public class Blog {
         return "Blog{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", intro='" + intro + '\'' +
                 ", content='" + content + '\'' +
                 ", thumbPic='" + thumbPic + '\'' +
                 ", recommend=" + recommend +

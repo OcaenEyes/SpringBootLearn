@@ -31,7 +31,7 @@ public class BlogComment {
     public BlogComment() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
