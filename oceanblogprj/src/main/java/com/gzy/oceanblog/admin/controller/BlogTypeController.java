@@ -25,7 +25,7 @@ public class BlogTypeController {
     private BlogTypeService blogTypeService;
 
     @ApiOperation(value = "分页查询文章类型")
-    @GetMapping("/blogTtpes")
+    @GetMapping("/blogTypes")
     @ResponseBody
     public Page<BlogType> page(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         return blogTypeService.listBlogType(pageable);
@@ -35,7 +35,7 @@ public class BlogTypeController {
     @ApiImplicitParam(name = "id")
     @GetMapping("/getBlogType")
     @ResponseBody
-    public BlogType getBlogType(@RequestParam long id) {
+    public BlogType getBlogType(@RequestParam Long id) {
         return blogTypeService.getBlogType(id);
     }
 
@@ -49,7 +49,7 @@ public class BlogTypeController {
     @ApiOperation(value = "更新文章类型")
     @PostMapping("/updateBlogType")
     @ResponseBody
-    public void updateBlogType(@RequestParam long id, BlogType blogType) throws NotFoundException {
+    public void updateBlogType(@RequestParam Long id, BlogType blogType) throws NotFoundException {
         blogTypeService.updateBlogType(id,blogType);
     }
 
@@ -57,7 +57,7 @@ public class BlogTypeController {
     @ApiImplicitParam(name = "id")
     @GetMapping("/deleteBlogType")
     @ResponseBody
-    public void deleteBlogType(@RequestParam long id) {
+    public void deleteBlogType(@RequestParam Long id) {
         blogTypeService.deleteBlogType(id);
     }
 

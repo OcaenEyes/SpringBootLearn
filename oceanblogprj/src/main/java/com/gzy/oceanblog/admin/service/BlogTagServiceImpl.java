@@ -25,7 +25,7 @@ public class BlogTagServiceImpl implements BlogTagService {
     @Transactional
     @Override
     public BlogTag updateBlogTag(long id,BlogTag blogTag) throws NotFoundException {
-        BlogTag blogTag1 = blogTagRepository.getOne(id);
+        BlogTag blogTag1 = blogTagRepository.findById(id).get();
         if (blogTag1 == null){
             throw new NotFoundException("不存在该标签");
         }
@@ -36,7 +36,7 @@ public class BlogTagServiceImpl implements BlogTagService {
     @Transactional
     @Override
     public BlogTag getBlogTag(long id) {
-        return blogTagRepository.getOne(id);
+        return blogTagRepository.findById(id).get();
     }
 
     @Transactional

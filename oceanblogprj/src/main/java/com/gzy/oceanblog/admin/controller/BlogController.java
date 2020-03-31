@@ -32,7 +32,7 @@ public class BlogController {
 
     @GetMapping("/getBlog")
     @ResponseBody
-    public Blog getBlog(@RequestParam long id){
+    public Blog getBlog(@RequestParam Long id){
         return blogService.getBlog(id);
     }
 
@@ -44,13 +44,13 @@ public class BlogController {
 
     @PostMapping("/updateBlog")
     @ResponseBody
-    public void updateBlog(@RequestParam long id, Blog blog) throws NotFoundException {
+    public void updateBlog(@RequestParam Long id, Blog blog) throws NotFoundException {
         blogService.updateBlog(id,blog);
     }
 
     @GetMapping("/deleteBlog")
     @ResponseBody
-    public void deleteBlog(@RequestParam long id){
+    public void deleteBlog(@RequestParam Long id){
         blogService.deleteBlog(id);
     }
 

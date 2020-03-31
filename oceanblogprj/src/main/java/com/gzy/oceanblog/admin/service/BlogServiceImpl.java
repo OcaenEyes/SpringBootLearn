@@ -29,8 +29,8 @@ public class BlogServiceImpl implements BlogService {
             blog.setViews(0);
         }else {
             blog.setUpdateTime(new Date());
-            blog.setViews(blogRepository.getOne(blog.getId()).getViews());
-            blog.setCreateTime(blogRepository.getOne(blog.getId()).getCreateTime());
+            blog.setViews(blogRepository.findById(blog.getId()).get().getViews());
+            blog.setCreateTime(blogRepository.findById(blog.getId()).get().getCreateTime());
         }
         return blogRepository.save(blog);
     }
@@ -38,7 +38,7 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog updateBlog(long id,Blog blog) throws NotFoundException {
-        Blog blog1 = blogRepository.getOne(id);
+        Blog blog1 = blogRepository.findById(id).get();
         if (blog1 == null){
             throw new NotFoundException("不存在该文章");
         }
@@ -49,7 +49,7 @@ public class BlogServiceImpl implements BlogService {
     @Transactional
     @Override
     public Blog getBlog(long id) {
-        return blogRepository.getOne(id);
+        return blogRepository.findById(id).get();
     }
 
     @Transactional

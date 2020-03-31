@@ -24,7 +24,7 @@ public class BlogTypeServiceImpl implements BlogTypeService {
     @Transactional
     @Override
     public BlogType updateBlogType(long id,BlogType blogType) throws NotFoundException {
-        BlogType blogType1 = blogTypeRepository.getOne(id);
+        BlogType blogType1 = blogTypeRepository.findById(id).get();
         if (blogType1 == null){
             throw new NotFoundException("不存在该类型");
         }
@@ -35,7 +35,7 @@ public class BlogTypeServiceImpl implements BlogTypeService {
     @Transactional
     @Override
     public BlogType getBlogType(long id) {
-        return blogTypeRepository.getOne(id);
+        return blogTypeRepository.findById(id).get();
     }
 
     @Transactional
