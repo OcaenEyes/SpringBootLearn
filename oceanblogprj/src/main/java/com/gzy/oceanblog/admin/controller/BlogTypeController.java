@@ -5,6 +5,7 @@ import com.gzy.oceanblog.admin.service.BlogTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,15 +42,15 @@ public class BlogTypeController {
     @ApiOperation(value = "保存文章类型")
     @PostMapping("/saveBlogType")
     @ResponseBody
-    public void saveBlogType(BlogType blogType) {
+    public void saveBlogType( BlogType blogType) {
         blogTypeService.saveBlogType(blogType);
     }
 
     @ApiOperation(value = "更新文章类型")
     @PostMapping("/updateBlogType")
     @ResponseBody
-    public void updateBlogType(BlogType blogType) {
-        blogTypeService.saveBlogType(blogType);
+    public void updateBlogType(@RequestParam long id, BlogType blogType) throws NotFoundException {
+        blogTypeService.updateBlogType(id,blogType);
     }
 
     @ApiOperation(value = "删除文章类型")

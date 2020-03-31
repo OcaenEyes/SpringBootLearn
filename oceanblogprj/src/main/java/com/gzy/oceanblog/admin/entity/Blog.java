@@ -1,6 +1,9 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ import java.util.List;
 public class Blog {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String title;
 
     public String getIntro() {
@@ -36,13 +39,16 @@ public class Blog {
     private Date updateTime;
 
 
+    @JsonIgnore
     @ManyToMany
     private List<BlogTag> blogTags = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToMany
     private List<BlogType> blogTypes = new ArrayList<>();
 
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     private BlogUser blogUser;
 
     @OneToMany(mappedBy = "blog")

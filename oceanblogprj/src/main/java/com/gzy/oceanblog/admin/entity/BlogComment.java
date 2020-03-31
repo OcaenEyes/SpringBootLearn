@@ -1,5 +1,8 @@
 package com.gzy.oceanblog.admin.entity;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +13,7 @@ import java.util.List;
 public class BlogComment {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String nickname;
     private String email;
     private String content;
@@ -20,12 +23,14 @@ public class BlogComment {
     private Date createTime;
 
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     private Blog blog;
 
     @OneToMany(mappedBy = "blogComment")
     private List<BlogComment> replyComments = new ArrayList<>();
 
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     private BlogComment blogComment;
 
     public BlogComment() {

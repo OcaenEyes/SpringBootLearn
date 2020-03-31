@@ -1,5 +1,7 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +12,7 @@ import java.util.List;
 public class BlogUser {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String nickname;
     private String username;
     private String email;
@@ -22,6 +24,7 @@ public class BlogUser {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "blogUser")
     private List<Blog> blogs = new ArrayList<>();
 

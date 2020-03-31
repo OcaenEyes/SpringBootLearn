@@ -3,6 +3,7 @@ package com.gzy.oceanblog.admin.controller;
 import com.gzy.oceanblog.admin.entity.BlogTag;
 import com.gzy.oceanblog.admin.service.BlogTagService;
 import io.swagger.annotations.Api;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,13 +42,13 @@ public class BlogTagController {
 
     @PostMapping("/saveBlogTag")
     @ResponseBody
-    public void  saveBlogTag(BlogTag blogTag){
+    public void  saveBlogTag( BlogTag blogTag){
         blogTagService.saveBlogTag(blogTag);
     }
 
     @PostMapping("/updateBlogTag")
     @ResponseBody
-    public void  updateBlogTag(BlogTag blogTag){
-        blogTagService.saveBlogTag(blogTag);
+    public void  updateBlogTag(@RequestParam long id, BlogTag blogTag) throws NotFoundException {
+        blogTagService.updateBlogTag(id,blogTag);
     }
 }

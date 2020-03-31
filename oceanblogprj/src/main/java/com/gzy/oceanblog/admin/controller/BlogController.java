@@ -4,6 +4,7 @@ import com.gzy.oceanblog.admin.entity.Blog;
 import com.gzy.oceanblog.admin.service.BlogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import javassist.NotFoundException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,8 +44,8 @@ public class BlogController {
 
     @PostMapping("/updateBlog")
     @ResponseBody
-    public void updateBlog(Blog blog){
-        blogService.updateBlog(blog);
+    public void updateBlog(@RequestParam long id, Blog blog) throws NotFoundException {
+        blogService.updateBlog(id,blog);
     }
 
     @GetMapping("/deleteBlog")

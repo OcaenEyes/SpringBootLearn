@@ -1,5 +1,7 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +11,10 @@ import java.util.List;
 public class BlogTag {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "blogTags")
     private List<Blog> blogs = new ArrayList<>();
 
