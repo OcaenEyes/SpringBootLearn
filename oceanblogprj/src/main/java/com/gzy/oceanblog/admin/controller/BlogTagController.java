@@ -3,6 +3,7 @@ package com.gzy.oceanblog.admin.controller;
 import com.gzy.oceanblog.admin.entity.BlogTag;
 import com.gzy.oceanblog.admin.service.BlogTagService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,10 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Api
@@ -23,6 +21,7 @@ public class BlogTagController {
     private BlogTagService blogTagService;
 
     @GetMapping("/blogTags")
+    @ApiImplicitParam(name = "page")
     @ResponseBody
     public Page<BlogTag> page(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
         return blogTagService.listBlogTag(pageable);
@@ -42,7 +41,7 @@ public class BlogTagController {
 
     @PostMapping("/saveBlogTag")
     @ResponseBody
-    public void  saveBlogTag( BlogTag blogTag){
+    public void  saveBlogTag(@RequestBody BlogTag blogTag){
         blogTagService.saveBlogTag(blogTag);
     }
 

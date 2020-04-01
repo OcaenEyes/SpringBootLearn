@@ -12,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Api
@@ -25,6 +22,7 @@ public class BlogController {
     private BlogService blogService;
 
     @GetMapping("/blogs")
+    @ApiImplicitParam(name = "page")
     @ResponseBody
     public Page<Blog> page(@PageableDefault(size = 10,sort = {"id"},direction = Sort.Direction.DESC)Pageable pageable){
         return blogService.listBlog(pageable);
@@ -38,7 +36,7 @@ public class BlogController {
 
     @PostMapping("/saveBlog")
     @ResponseBody
-    public void saveBlog(Blog blog){
+    public void saveBlog(@RequestBody Blog blog){
         blogService.saveBlog(blog);
     }
 

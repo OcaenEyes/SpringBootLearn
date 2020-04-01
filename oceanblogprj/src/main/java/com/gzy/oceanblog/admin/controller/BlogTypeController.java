@@ -6,25 +6,26 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import javassist.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Api()
 public class BlogTypeController {
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private BlogTypeService blogTypeService;
 
     @ApiOperation(value = "分页查询文章类型")
+    @ApiImplicitParam(name = "page")
     @GetMapping("/blogTypes")
     @ResponseBody
     public Page<BlogType> page(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
@@ -36,13 +37,15 @@ public class BlogTypeController {
     @GetMapping("/getBlogType")
     @ResponseBody
     public BlogType getBlogType(@RequestParam Long id) {
+        logger.info(String.valueOf(id));
         return blogTypeService.getBlogType(id);
     }
 
     @ApiOperation(value = "保存文章类型")
     @PostMapping("/saveBlogType")
     @ResponseBody
-    public void saveBlogType( BlogType blogType) {
+    public void saveBlogType(@RequestBody BlogType blogType) {
+        logger.info("入参信息",String.valueOf(blogType));
         blogTypeService.saveBlogType(blogType);
     }
 
