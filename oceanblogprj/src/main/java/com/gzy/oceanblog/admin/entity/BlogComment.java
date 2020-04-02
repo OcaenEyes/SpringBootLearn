@@ -1,5 +1,6 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Table(name = "blog_comment")
 public class BlogComment {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nickname;
     private String email;
@@ -104,6 +105,7 @@ public class BlogComment {
         return blogComment;
     }
 
+    @JsonBackReference
     public void setBlogComment(BlogComment blogComment) {
         this.blogComment = blogComment;
     }

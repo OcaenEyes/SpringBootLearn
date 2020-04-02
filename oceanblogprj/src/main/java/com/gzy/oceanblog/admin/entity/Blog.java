@@ -1,5 +1,6 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.NotFound;
@@ -15,7 +16,7 @@ import java.util.List;
 @Table(name = "blog")
 public class Blog {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
 
@@ -38,12 +39,9 @@ public class Blog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-
-    @JsonIgnore
     @ManyToMany
     private List<BlogTag> blogTags = new ArrayList<>();
 
-    @JsonIgnore
     @ManyToMany
     private List<BlogType> blogTypes = new ArrayList<>();
 
@@ -149,6 +147,7 @@ public class Blog {
         return blogComments;
     }
 
+    @JsonBackReference
     public void setBlogComments(List<BlogComment> blogComments) {
         this.blogComments = blogComments;
     }

@@ -1,5 +1,6 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @Table(name = "blog_user")
 public class BlogUser {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nickname;
     private String username;
@@ -24,7 +25,6 @@ public class BlogUser {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "blogUser")
     private List<Blog> blogs = new ArrayList<>();
 
@@ -92,6 +92,7 @@ public class BlogUser {
         return blogs;
     }
 
+    @JsonBackReference
     public void setBlogs(List<Blog> blogs) {
         this.blogs = blogs;
     }

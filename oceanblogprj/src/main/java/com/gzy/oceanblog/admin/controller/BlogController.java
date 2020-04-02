@@ -36,7 +36,7 @@ public class BlogController {
 
     @PostMapping("/saveBlog")
     @ResponseBody
-    public void saveBlog( Blog blog){
+    public void saveBlog( @RequestBody Blog blog){
         blogService.saveBlog(blog);
     }
 

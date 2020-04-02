@@ -1,5 +1,6 @@
 package com.gzy.oceanblog.admin.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -10,11 +11,10 @@ import java.util.List;
 @Table(name = "blog_tag")
 public class BlogTag {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "blogTags")
     private List<Blog> blogs = new ArrayList<>();
 
@@ -41,6 +41,7 @@ public class BlogTag {
         return blogs;
     }
 
+    @JsonBackReference
     public void setBlogs(List<Blog> blogs) {
         this.blogs = blogs;
     }
