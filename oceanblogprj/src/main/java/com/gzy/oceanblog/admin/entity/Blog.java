@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 @Table(name = "blog")
 public class Blog {
     @Id
@@ -29,6 +29,7 @@ public class Blog {
     }
 
     private String intro;
+    @Lob
     private String content;
     private String thumbPic;
     private Boolean recommend;

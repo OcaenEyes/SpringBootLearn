@@ -13,6 +13,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @Api
 public class BlogTagController {
@@ -49,5 +51,11 @@ public class BlogTagController {
     @ResponseBody
     public void  updateBlogTag(@RequestParam long id, BlogTag blogTag) throws NotFoundException {
         blogTagService.updateBlogTag(id,blogTag);
+    }
+
+    @GetMapping("/tag")
+    @ResponseBody
+    public List<BlogTag> blogTags(){
+        return blogTagService.listBlogTag();
     }
 }

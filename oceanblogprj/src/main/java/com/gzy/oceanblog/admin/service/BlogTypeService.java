@@ -5,6 +5,8 @@ import javassist.NotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface BlogTypeService {
     BlogType saveBlogType(BlogType blogType);
 
@@ -15,5 +17,7 @@ public interface BlogTypeService {
     void deleteBlogType(long id);
 
     Page<BlogType> listBlogType(Pageable pageable);
+
+    List<BlogType> lsitBlogType();
 
 }

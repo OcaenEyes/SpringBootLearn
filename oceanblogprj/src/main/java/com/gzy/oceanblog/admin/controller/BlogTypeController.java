@@ -16,6 +16,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @Api()
 public class BlogTypeController {
@@ -64,5 +66,11 @@ public class BlogTypeController {
         blogTypeService.deleteBlogType(id);
     }
 
+
+    @GetMapping("/type")
+    @ResponseBody
+    public List<BlogType> blogTypes(){
+        return blogTypeService.lsitBlogType();
+    }
 
 }

@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class BlogTagServiceImpl implements BlogTagService {
     @Autowired
@@ -49,5 +51,10 @@ public class BlogTagServiceImpl implements BlogTagService {
     @Override
     public Page<BlogTag> listBlogTag(Pageable pageable) {
         return blogTagRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<BlogTag> listBlogTag() {
+        return blogTagRepository.findAll();
     }
 }

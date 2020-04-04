@@ -12,3 +12,8 @@ spring:
     user:
       name: gzy
       password: 123456
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  resources:
+    static-locations: classpath:static/,file:static/
