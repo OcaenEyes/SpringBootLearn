@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Api
@@ -59,13 +56,15 @@ public class BlogController {
 //    public void saveBlog( @RequestBody Blog blog){
 //        blogService.saveBlog(blog);
 //    }
-    public void saveBlog(@RequestBody Map map) throws NotFoundException {
-        logger.info(String.valueOf(map));
-        Blog blog = new Blog();
-        blog.setTitle(map.get("title").toString());
-        blog.setContent(map.get("content").toString());
-        blog.setIntro(map.get("intro").toString());
-        blog.setThumbPic(map.get("thumbPic").toString());
+    public Object saveBlog(@RequestBody Map map) throws NotFoundException {
+        Map map1 = new HashMap();
+        try{
+            logger.info(String.valueOf(map));
+            Blog blog = new Blog();
+            blog.setTitle(map.get("title").toString());
+            blog.setContent(map.get("content").toString());
+            blog.setIntro(map.get("intro").toString());
+            blog.setThumbPic(map.get("thumbPic").toString());
 //        ArrayList<Blog> blogs = new ArrayList<>();
 //        blogs.add(blog);
 //        Integer i = (Integer) map.get("recommend");
@@ -74,32 +73,42 @@ public class BlogController {
 //        } else {
 //            blog.setRecommend(Boolean.FALSE);
 //        }
-        blog.setRecommend((Boolean) map.get("recommend"));
-        ArrayList<BlogType> blogTypes = new ArrayList<>();
-        ArrayList typelist = (ArrayList) map.get("blogTypes");
-        for (Object type : typelist
-        ) {
-            logger.info((String) type);
-            BlogType blogType = new BlogType();
-            blogType.setName((String) type);
-            blogTypeService.saveBlogType(blogType);
-            BlogType blogType1 = blogTypeService.getBlogTypeByName((String) type);
-            blogTypes.add(blogType1);
+            blog.setRecommend((Boolean) map.get("recommend"));
+            ArrayList<BlogType> blogTypes = new ArrayList<>();
+            ArrayList typelist = (ArrayList) map.get("blogTypes");
+            for (Object type : typelist
+            ) {
+                logger.info((String) type);
+                BlogType blogType = new BlogType();
+                blogType.setName((String) type);
+                blogTypeService.saveBlogType(blogType);
+                BlogType blogType1 = blogTypeService.getBlogTypeByName((String) type);
+                blogTypes.add(blogType1);
+            }
+            ArrayList<BlogTag> blogTags = new ArrayList<>();
+            ArrayList taglist = (ArrayList) map.get("blogTags");
+            for (Object tag : taglist
+            ) {
+                logger.info((String) tag);
+                BlogTag blogTag = new BlogTag();
+                blogTag.setName((String) tag);
+                blogTagService.saveBlogTag(blogTag);
+                BlogTag blogTag1 = blogTagService.getBlogTagByNaem((String) tag);
+                blogTags.add(blogTag1);
+            }
+            blog.setBlogTypes(blogTypes);
+            blog.setBlogTags(blogTags);
+            blogService.saveBlog(blog);
+            map1.put("code","200");
+            map1.put("messsage","成功");
+            return map1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            map1.put("code","100");
+            map1.put("messsage","失败");
+            return map1;
         }
-        ArrayList<BlogTag> blogTags = new ArrayList<>();
-        ArrayList taglist = (ArrayList) map.get("blogTags");
-        for (Object tag : taglist
-        ) {
-            logger.info((String) tag);
-            BlogTag blogTag = new BlogTag();
-            blogTag.setName((String) tag);
-            blogTagService.saveBlogTag(blogTag);
-            BlogTag blogTag1 = blogTagService.getBlogTagByNaem((String) tag);
-            blogTags.add(blogTag1);
-        }
-        blog.setBlogTypes(blogTypes);
-        blog.setBlogTags(blogTags);
-        blogService.saveBlog(blog);
     }
 
     @PostMapping("/updateBlog")

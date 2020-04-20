@@ -13,7 +13,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Api
@@ -31,31 +33,37 @@ public class BlogTagController {
 
     @GetMapping("/getBlogTag")
     @ResponseBody
-    public BlogTag getBlogTag(@RequestParam long id){
+    public BlogTag getBlogTag(@RequestParam long id) {
         return blogTagService.getBlogTag(id);
     }
 
     @GetMapping("/deleteBlogTag")
     @ResponseBody
-    public void  deleteBlogTag(@RequestParam long id){
+    public void deleteBlogTag(@RequestParam long id) {
         blogTagService.deleteBlogTag(id);
     }
 
     @PostMapping("/saveBlogTag")
     @ResponseBody
-    public void  saveBlogTag(@RequestBody BlogTag blogTag) throws NotFoundException {
-        blogTagService.saveBlogTag(blogTag);
+    public Object saveBlogTag(@RequestBody BlogTag blogTag) {
+        try {
+            Object o = blogTagService.saveBlogTag(blogTag);
+            return o;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @PostMapping("/updateBlogTag")
     @ResponseBody
-    public void  updateBlogTag(@RequestParam long id, BlogTag blogTag) throws NotFoundException {
-        blogTagService.updateBlogTag(id,blogTag);
+    public void updateBlogTag(@RequestParam long id, BlogTag blogTag) throws NotFoundException {
+        blogTagService.updateBlogTag(id, blogTag);
     }
 
     @GetMapping("/tag")
     @ResponseBody
-    public List<BlogTag> blogTags(){
+    public List<BlogTag> blogTags() {
         return blogTagService.listBlogTag();
     }
 }

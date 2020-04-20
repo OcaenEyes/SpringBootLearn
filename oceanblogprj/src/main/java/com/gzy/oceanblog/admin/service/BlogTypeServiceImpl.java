@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BlogTypeServiceImpl implements BlogTypeService {
@@ -22,13 +24,20 @@ public class BlogTypeServiceImpl implements BlogTypeService {
 
     @Transactional
     @Override
-    public void saveBlogType(BlogType blogType) {
+    public Object saveBlogType(BlogType blogType) {
+        Map map = new HashMap();
         String blogTypeName = blogType.getName();
         BlogType blogType1 = blogTypeRepository.getBlogTypeByName(blogTypeName);
         if (blogType1 != null) {
             logger.info("已存在该类型");
+            map.put("code", "100");
+            map.put("message", "已存在");
+            return map;
         } else {
             blogTypeRepository.save(blogType);
+            map.put("code", "200");
+            map.put("message", "成功");
+            return map;
         }
     }
 

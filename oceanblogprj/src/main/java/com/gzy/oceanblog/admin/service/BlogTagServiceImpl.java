@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BlogTagServiceImpl implements BlogTagService {
@@ -23,24 +25,30 @@ public class BlogTagServiceImpl implements BlogTagService {
 
     @Transactional
     @Override
-    public void saveBlogTag(BlogTag blogTag) {
+    public Object saveBlogTag(BlogTag blogTag) {
+        Map map = new HashMap();
         String blogTagName = blogTag.getName();
         BlogTag blogTag1 = blogTagRepository.getBlogTagByName(blogTagName);
-        if (blogTag1 != null){
-            logger.info("已存该标签");
-        }else {
+        if (blogTag1 != null) {
+            map.put("code", "100");
+            map.put("message", "已存在");
+            return map;
+        } else {
             blogTagRepository.save(blogTag);
+            map.put("code", "200");
+            map.put("message", "成功");
+            return map;
         }
     }
 
     @Transactional
     @Override
-    public BlogTag updateBlogTag(long id,BlogTag blogTag) throws NotFoundException {
+    public BlogTag updateBlogTag(long id, BlogTag blogTag) throws NotFoundException {
         BlogTag blogTag1 = blogTagRepository.findById(id).get();
-        if (blogTag1 == null){
+        if (blogTag1 == null) {
             throw new NotFoundException("不存在该标签");
         }
-        BeanUtils.copyProperties(blogTag,blogTag1);
+        BeanUtils.copyProperties(blogTag, blogTag1);
         return blogTagRepository.save(blogTag1);
     }
 
