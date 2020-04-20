@@ -59,7 +59,7 @@ public class BlogController {
 //    public void saveBlog( @RequestBody Blog blog){
 //        blogService.saveBlog(blog);
 //    }
-    public void saveBlog(@RequestBody Map map) {
+    public void saveBlog(@RequestBody Map map) throws NotFoundException {
         logger.info(String.valueOf(map));
         Blog blog = new Blog();
         blog.setTitle(map.get("title").toString());
@@ -82,8 +82,9 @@ public class BlogController {
             logger.info((String) type);
             BlogType blogType = new BlogType();
             blogType.setName((String) type);
-            blogTypes.add(blogType);
             blogTypeService.saveBlogType(blogType);
+            BlogType blogType1 = blogTypeService.getBlogTypeByName((String) type);
+            blogTypes.add(blogType1);
         }
         ArrayList<BlogTag> blogTags = new ArrayList<>();
         ArrayList taglist = (ArrayList) map.get("blogTags");
@@ -92,8 +93,9 @@ public class BlogController {
             logger.info((String) tag);
             BlogTag blogTag = new BlogTag();
             blogTag.setName((String) tag);
-            blogTags.add(blogTag);
             blogTagService.saveBlogTag(blogTag);
+            BlogTag blogTag1 = blogTagService.getBlogTagByNaem((String) tag);
+            blogTags.add(blogTag1);
         }
         blog.setBlogTypes(blogTypes);
         blog.setBlogTags(blogTags);
@@ -112,7 +114,7 @@ public class BlogController {
         blog.setIntro(map.get("intro").toString());
         blog.setThumbPic(map.get("thumbPic").toString());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        blog.setCreateTime( sdf.parse((String) map.get("createTime")));
+        blog.setCreateTime(sdf.parse((String) map.get("createTime")));
         Date updateTime = new Date();
         blog.setUpdateTime(updateTime);
         blog.setRecommend((Boolean) map.get("recommend"));
@@ -125,8 +127,9 @@ public class BlogController {
             logger.info((String) type);
             BlogType blogType = new BlogType();
             blogType.setName((String) type);
-            blogTypes.add(blogType);
             blogTypeService.saveBlogType(blogType);
+            BlogType blogType1 = blogTypeService.getBlogTypeByName((String) type);
+            blogTypes.add(blogType1);
         }
         ArrayList<BlogTag> blogTags = new ArrayList<>();
         ArrayList taglist = (ArrayList) map.get("blogTags");
@@ -135,8 +138,10 @@ public class BlogController {
             logger.info((String) tag);
             BlogTag blogTag = new BlogTag();
             blogTag.setName((String) tag);
-            blogTags.add(blogTag);
             blogTagService.saveBlogTag(blogTag);
+            BlogTag blogTag1 = blogTagService.getBlogTagByNaem((String) tag);
+            blogTags.add(blogTag1);
+
         }
         blog.setBlogTypes(blogTypes);
         blog.setBlogTags(blogTags);

@@ -1,9 +1,10 @@
 package com.gzy.oceanblog.admin.service;
 
 import com.gzy.oceanblog.admin.entity.BlogTag;
-import com.gzy.oceanblog.admin.entity.BlogType;
 import com.gzy.oceanblog.admin.repository.BlogTagRepository;
 import javassist.NotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,13 +16,21 @@ import java.util.List;
 
 @Service
 public class BlogTagServiceImpl implements BlogTagService {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private BlogTagRepository blogTagRepository;
 
     @Transactional
     @Override
-    public BlogTag saveBlogTag(BlogTag blogTag) {
-        return blogTagRepository.save(blogTag);
+    public void saveBlogTag(BlogTag blogTag) {
+        String blogTagName = blogTag.getName();
+        BlogTag blogTag1 = blogTagRepository.getBlogTagByName(blogTagName);
+        if (blogTag1 != null){
+            logger.info("已存该标签");
+        }else {
+            blogTagRepository.save(blogTag);
+        }
     }
 
     @Transactional
@@ -39,6 +48,11 @@ public class BlogTagServiceImpl implements BlogTagService {
     @Override
     public BlogTag getBlogTag(long id) {
         return blogTagRepository.findById(id).get();
+    }
+
+    @Override
+    public BlogTag getBlogTagByNaem(String name) {
+        return blogTagRepository.getBlogTagByName(name);
     }
 
     @Transactional

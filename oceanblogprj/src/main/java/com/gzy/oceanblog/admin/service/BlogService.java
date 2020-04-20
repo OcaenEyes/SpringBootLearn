@@ -12,6 +12,7 @@ public interface BlogService {
     Blog saveBlog(Blog blog);
     Blog updateBlog(long id,Blog blog) throws NotFoundException;
     Blog getBlog(long id);
+
     void deleteBlog(long id);
     Page<Blog> listBlog(Pageable pageable);
     Page<Blog> listBlog(long tagId,Pageable pageable);

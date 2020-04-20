@@ -43,7 +43,7 @@ public class BlogTagController {
 
     @PostMapping("/saveBlogTag")
     @ResponseBody
-    public void  saveBlogTag(@RequestBody BlogTag blogTag){
+    public void  saveBlogTag(@RequestBody BlogTag blogTag) throws NotFoundException {
         blogTagService.saveBlogTag(blogTag);
     }
 

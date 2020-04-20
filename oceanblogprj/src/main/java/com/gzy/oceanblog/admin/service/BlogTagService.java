@@ -8,11 +8,12 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface BlogTagService {
-    BlogTag saveBlogTag(BlogTag blogTag);
+    void saveBlogTag(BlogTag blogTag) throws NotFoundException;
 
     BlogTag updateBlogTag(long id,BlogTag blogTag) throws NotFoundException;
 
     BlogTag getBlogTag(long id);
+    BlogTag getBlogTagByNaem(String name);
 
     void deleteBlogTag(long id);
 

@@ -46,7 +46,7 @@ public class BlogTypeController {
     @ApiOperation(value = "保存文章类型")
     @PostMapping("/saveBlogType")
     @ResponseBody
-    public void saveBlogType(@RequestBody BlogType blogType) {
+    public void saveBlogType(@RequestBody BlogType blogType) throws NotFoundException {
         logger.info("入参信息",String.valueOf(blogType));
         blogTypeService.saveBlogType(blogType);
     }
