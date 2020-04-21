@@ -19,6 +19,8 @@ public interface BlogService {
 
     List<Blog> listRecommendBlogTop(int size);
 
+    List<Blog> listBlogNew();
+
     Map<String,List<Blog>> archiveBlog();
 
     Map<String,List<Blog>> archiveBlogByYear(int year);

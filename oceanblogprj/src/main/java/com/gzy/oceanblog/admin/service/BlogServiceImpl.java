@@ -76,6 +76,11 @@ public class BlogServiceImpl implements BlogService {
         return null;
     }
 
+    @Override
+    public List<Blog> listBlogNew() {
+        return blogRepository.queryBlogsNew();
+    }
+
     @Transactional
     @Override
     public Map<String, List<Blog>> archiveBlog() {

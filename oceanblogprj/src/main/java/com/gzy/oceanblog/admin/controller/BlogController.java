@@ -163,4 +163,10 @@ public class BlogController {
         blogService.deleteBlog(id);
     }
 
+    @GetMapping("/blogNew")
+    @ResponseBody
+    public List<Blog> blogNew(){
+        return blogService.listBlogNew();
+    }
+
 }
