@@ -24,7 +24,7 @@ public class ChatWebSocketRunner {
             serverBootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 128)
-                    .childHandler(new ChatWebsocketHandler());
+                    .childHandler(new ChatWebSocketChannelInitializer());
 
             // 绑定端口 ，同步等待成功
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();

@@ -18,6 +18,8 @@ public class BlogUser {
     private String username;
     private String email;
     private String avatar;
+    private String password;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
@@ -90,6 +92,14 @@ public class BlogUser {
 
     public List<Blog> getBlogs() {
         return blogs;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @JsonBackReference
